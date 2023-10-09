@@ -3,7 +3,7 @@ import { useFetch } from "../hooks/useFetch";
 
 function Recipe() {
   const { id } = useParams();
-  const url = `http://localhost:3000/recipes/${id}`;
+  const url = `https://spotless-understood-star.glitch.me/recipes/${id}`;
   const { data, isPending, error } = useFetch(url);
 
   if (data === null) {
@@ -16,7 +16,7 @@ function Recipe() {
   const { img, title, ingredients, cookingTime, method } = data;
   return (
     <>
-      <div className="card lg:card-side bg-base-100 shadow-xl mt-2">
+      <div key={title} className="card lg:card-side bg-base-100 shadow-xl mt-2">
         <figure>
           <img src={img} alt={title} className="lg:w-[600px] h-full rounded" />
         </figure>

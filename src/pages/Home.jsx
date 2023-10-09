@@ -7,7 +7,7 @@ function Home() {
     data: recipies,
     isPending,
     error,
-  } = useFetch("http://localhost:3000/recipes");
+  } = useFetch("https://spotless-understood-star.glitch.me/recipes");
   return <>{recipies && <RecipiesList recipies={recipies} />}</>;
 }
 
