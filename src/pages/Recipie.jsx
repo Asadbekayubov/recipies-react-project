@@ -3,7 +3,7 @@ import { useFetch } from "../hooks/useFetch";
 
 function Recipe() {
   const { id } = useParams();
-  const url = `https://spotless-understood-star.glitch.me/recipes/${id}`;
+  const url = `https://recipies-api.glitch.me/recipes/${id}`;
   const { data, isPending, error } = useFetch(url);
 
   if (data === null) {
