@@ -5,7 +5,7 @@ function RecipiesList({ recipies }) {
   return (
     <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {recipies.map((recipe) => {
-        const { id, title, method, cookingTime, img } = recipe;
+        const { id, title, method , img } = recipe;
         return (
           <li key={id} className="card w-full bg-base-100 shadow-xl">
             <figure>
