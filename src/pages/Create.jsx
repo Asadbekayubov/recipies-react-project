@@ -1,22 +1,42 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useFetch } from "../hooks/useFetch";
+import { toast } from "react-toastify";
 
 function Create() {
+  const { data, isPending, error, newData } = useFetch(
+    "https://recipies-api.glitch.me/recipes",
+    "POST"
+  );
   const [title, setTitle] = useState("");
   const [cookingTime, setCookingTime] = useState(0);
   const [img, setImg] = useState("");
   const [method, setMethod] = useState("");
 
+  const [ingradient, setIngradient] = useState("");
+  const [ingradients, setIngradients] = useState([]);
+
+  const addIngradient = (e) => {
+    e.preventDefault();
+    if (!ingradients.includes(ingradient)) {
+      setIngradients((prev) => {
+        return [...prev, ingradient];
+      });
+    }
+    setIngradient("");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const recipie = {
-      id: uuidv4(),
-      title: title,
+    newData({
+      title,
       cookingTime: `${cookingTime} minutes`,
-      img: img,
-      method: method,
-    };
-    console.log(recipie);
+      img,
+      method,
+      id: uuidv4(),
+      ingradients,
+    });
+    toast.success("New Recipie Added Successfully");
   };
 
   return (
@@ -44,11 +64,18 @@ function Create() {
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
+              onChange={(e) => setIngradient(e.target.value)}
+              value={ingradient}
             />
-            <button className="btn btn-primary">Add</button>
+            <button onClick={addIngradient} className="btn btn-primary">
+              Add
+            </button>
           </div>
           <p>
-            Ingradients: <span>Tuz , suv , go'sht</span>
+            Ingradients:{" "}
+            {ingradients.map((ing) => {
+              return <span key={ing}> {ing} , </span>;
+            })}
           </p>
         </div>
         <div className="form-control w-full max-w-xs mt-3">

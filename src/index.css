@@ -27,3 +27,7 @@
 .breadcrumbs .crumb a {
   color: #835656;
 }
+
+img {
+  object-fit: cover;
+}

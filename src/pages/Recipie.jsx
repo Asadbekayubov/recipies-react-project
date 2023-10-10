@@ -24,9 +24,9 @@ function Recipe() {
           <h2 className="card-title text-5xl mb-2">{title}</h2>
           <ul>
             <h3 className="text-2xl mb-3">Ingredients:</h3>
-            {ingredients.map((gradient) => {
+            {ingredients && ingredients.map((gradient) => {
               return (
-                <li className="pl-5">
+                <li key={gradient} className="pl-5">
                   <p className="text-1xl">{gradient}</p>
                 </li>
               );

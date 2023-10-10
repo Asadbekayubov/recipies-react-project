@@ -6,7 +6,7 @@ function MainLayout() {
   return (
     <>
       <Navbar />
-      <main className="align-elements">
+      <main className="align-elements pb-8">
         <BreadCrupms />
         <Outlet />
       </main>
